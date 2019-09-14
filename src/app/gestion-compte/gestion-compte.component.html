@@ -1,0 +1,223 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" >
+        <div class="card">
+
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Ajouter Nouvelle Compte</h4>
+            <br>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+                <!-- Informatiosn client -->
+                <div class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">
+
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title">Client</h4>
+                  </div>
+
+                  <div class="row mt-5" >
+                      <label class="nv-client ml-5 mr-3 mt-2">S'agit ils d'un nouveau client ?</label>
+                      <mat-button-toggle-group >
+                        <mat-button-toggle class="nv-btn" (click)="notExist()" >
+                          Oui
+                        </mat-button-toggle>
+                        <mat-button-toggle class="nv-btn" (click)="exist()">
+                          Non
+                        </mat-button-toggle>
+                      </mat-button-toggle-group>
+                  </div>
+
+                  <div class="card-body row "  *ngIf="!client_exist">
+
+                  <div class="form-group col-md-6"  >
+                    <mat-form-field  style="border-radius: 0px" appearance="outline">
+                      <mat-label>Nom</mat-label>
+                      <input ngModel name="nom"  matInput placeholder="Nom" required minlength="2" id="name"
+                             #name="ngModel" type="text" pattern="[a-zA-Zéè ]+">
+                      <mat-hint *ngIf="!name.valid && name.touched">Nom invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Prénom</mat-label>
+                      <input ngModel name="prenom" matInput placeholder="Prénom" required minlength="2"
+                             #prenom="ngModel" type="text" pattern="[a-zA-Zéè ]+">
+                        <mat-hint *ngIf="!prenom.valid && name.touched">Prénom invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>CIN</mat-label>
+                      <input ngModel name="cin" matInput placeholder="CIN" required  pattern="[0-9]{8}" #cin="ngModel">
+                        <mat-hint *ngIf="!cin.valid && cin.touched">CIN invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Date De Naissance</mat-label>
+                      <input matInput ngModel name="date_naissance" [matDatepicker]="picker" placeholder="Date De Naissance" required #datn="ngModel">
+                      <mat-datepicker-toggle startView="year" matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint *ngIf="!datn.valid && datn.touched">Date de naissance nécessaire</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <mat-form-field appearance="outline">
+                      <mat-select ngModel name="sexe" placeholder="Sexe" required #sexe="ngModel">
+                        <mat-option value="Homme">Homme</mat-option>
+                        <mat-option value="Femme">Femme</mat-option>
+                      </mat-select>
+                        <mat-hint *ngIf="sexe.invalid && sexe.touched">Sexe nécessaire</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fonction</mat-label>
+                      <input ngModel name="fonction" matInput placeholder="Fonction" required type="text" minlength="3" pattern="[a-zA-Zéè ]+" #fnc="ngModel">
+                        <mat-hint *ngIf="!fnc.valid && fnc.touched">Fonction invalide</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                    <div class="form-group col-md-6">
+                      <mat-form-field appearance="outline">
+                        <mat-select ngModel name="nature" placeholder="Nature" required #nat="ngModel">
+                          <mat-option value="Particulier">Particulier</mat-option >
+                          <mat-option value="Entreprise">Entreprise</mat-option>
+                        </mat-select>
+                          <mat-hint *ngIf="!nat.valid && nat.touched">Nature nécessaire</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline" >
+                      <mat-label>E-mail</mat-label>
+                      <input ngModel name="mail" matInput placeholder="E-mail" required type="email" #email="ngModel" >
+                        <mat-hint *ngIf="email.invalid && email.touched">Email invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline" >
+                      <mat-label>Numéro du Téléphone</mat-label>
+                      <input  ngModel name="tel" matInput placeholder="Numéro du Téléphone"
+                              required  type="number" pattern="[1-9][0-9]{7}" #tel="ngModel">
+                        <mat-hint *ngIf="!tel.valid && tel.touched">Téléphone invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                    <div class="form-group col-md-6" >
+                      <mat-form-field appearance="outline">
+                        <mat-label>Gouvernorat</mat-label>
+                        <input ngModel name="gouvernerat" matInput placeholder="Gouvernerat" required type="text" minlength="4" #gvr="ngModel" pattern="[a-zA-Zéè ]+">
+                          <mat-hint *ngIf="gvr.invalid && gvr.touched">Gouvernorat invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ville</mat-label>
+                        <input ngModel name="ville" matInput placeholder="Ville" required type="text" minlength="4" pattern="[a-zA-Zéè ]+" #ville="ngModel">
+                          <mat-hint *ngIf="ville.invalid && ville.touched">Ville invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                      <mat-form-field appearance="outline">
+                        <mat-label>Code Postale</mat-label>
+                        <input ngModel name="code_postale" matInput placeholder="Code Postale" required type="number" pattern="[1-9][0-9]{3}" #cp="ngModel">
+                          <mat-hint *ngIf="cp.invalid && cp.touched">Code postale invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                      <mat-form-field appearance="outline">
+                        <mat-label>Quartier</mat-label>
+                        <input ngModel name="quartier" matInput placeholder="Quartier" required type="text" minlength="4"
+                               pattern="[a-zA-Zéè ]+" #qrt="ngModel">
+                          <mat-hint *ngIf="qrt.invalid && qrt.touched">Quartier invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+
+                  </div>
+
+                  <div class="card-body row "  *ngIf="client_exist">
+
+                    <div class="form-group col-md-10" >
+                      <mat-form-field appearance="outline">
+                        <mat-label>Identifiant de Client </mat-label>
+                        <input [(ngModel)]="ExistClientID" name="id" matInput placeholder="id"  type="number"
+                               required pattern="[0-9]{13}" #idcmpt="ngModel">
+                          <mat-hint *ngIf="idcmpt.invalid && idcmpt.touched">Numéro de compte invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-2" >
+                      <div class="col-md-10">
+                        <a [disabled]="idcmpt.invalid " style="width: 100%" mat-raised-button class="Btn-blue"  (click)="getExistClient()">
+                          Vérifier
+                        </a>
+                      </div>
+                      <div *ngIf="ExistClientCompte" class="col-md-10">
+                        <button mat-raised-button class="Btn-details" type="button" (click)="openDetailsDialog()">
+                          <i class="material-icons icon-blue" >
+                            subject
+                          </i>
+                          Détails
+                      </button>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+              <div class="card pr-4 pl-4 mb-5" >
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Compte</h4>
+                </div>
+
+                <div class="card-body row mt-4" >
+
+                  <div class="form-group col-md-6">
+                    <mat-form-field  appearance="outline">
+                      <mat-select ngModel name="type_compte" placeholder="Type de compte" required #tpc="ngModel">
+                        <mat-option value=1 *ngIf="!CourantExist">Courant</mat-option>
+                        <mat-option value=0 *ngIf="!EpargneExist">Epargne</mat-option>
+                      </mat-select>
+                        <mat-hint *ngIf="tpc.invalid && tpc.touched">Type de compte nécessaire</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-6" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Solde initial</mat-label>
+                      <input ngModel name="solde" matInput placeholder="Nature"  required #sint="ngModel" pattern="[1-9][0-9]*(\.[0-9]{1,3})?">
+                        <mat-hint  *ngIf="sint.invalid && sint.touched">Solde initiale invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body row" >
+                  <button style="padding-bottom: 5px;margin-top: -20px" mat-raised-button
+                          class="Btn-blue" type="submit" [disabled]="!form.valid">Envoyer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

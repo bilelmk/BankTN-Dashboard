@@ -1,0 +1,70 @@
+<div class="col-12 p-0 m-0" >
+    <div class="col-12 p-0 m-0 " >
+        <h3 class="model-titre">{{data.nom}} {{data.prenom}}</h3>
+    </div>
+    <div>
+
+        <div class="card-body">
+            <!--
+            <h2 class="card-title"></h2>-->
+
+            <hr/>
+            <h4>Informations personnelles</h4>
+            <hr/>
+            <p>
+                <span style="font-weight:bold;"> ID : </span> {{data.numClient}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> Sexe : </span> {{data.sexe}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> CIN : </span> {{data.cin}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> Email : </span> {{data.email}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> Téléphone : </span> {{data.telephone}}
+            </p>
+
+            <p>
+                <span style="font-weight:bold;"> Fonction : </span> {{data.fonction}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> Nature : </span> {{data.nature}}
+            </p>
+            <p>
+                <span style="font-weight:bold;"> Adresse : </span> {{adresse.quartier}} {{adresse.ville}} {{adresse.codePostal}} {{adresse.gouvernorat}}
+            </p>
+
+            <p>
+                <span style="font-weight:bold;"> Date inscription : </span> {{data.dateInscription}}
+            </p>
+
+            <hr/>
+            <h4>Liste des comptes</h4>
+            <hr/>
+            <div  class="row mt-4" >
+                <div *ngFor="let compte of comptes" class="col-6">
+                    <p>
+                        <span style="font-weight:bold;"> Numéro Compte : </span> {{compte.numCompte}}
+                    </p>
+
+                    <p>
+                        <span style="font-weight:bold;"> Type : </span> {{(compte.numTypeCompte == 1)? "Courant "  : "Epargne"}}
+                    </p>
+
+                    <p>
+                        <span style="font-weight:bold;"> Solde : </span> {{compte.solde}}
+                    </p>
+                    <p>
+                        <span style="font-weight:bold;"> Date de création : </span> {{compte.dateCreation}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,162 @@
+
+<div class="col-12 p-0 m-0 " >
+  <h3 class="model-titre">Modifier les données de client</h3>
+</div>
+<form (ngSubmit)="modifier()" #form="ngForm">
+  <div class="row mt-4" >
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input  [(ngModel)]="data.nom" id="name" name="nom" type="text" matInput placeholder="Nom" #nom="ngModel"
+                required minlength="3"   pattern="[a-zA-Zéè ]+">
+        <mat-hint *ngIf="nom.invalid && nom.touched">Nom invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input  [(ngModel)]="data.prenom" name="prenom" matInput placeholder="Prénom" type="text"
+               #pren="ngModel"  required minlength="3" pattern="[a-zA-Zéè ]+">
+        <mat-hint *ngIf="pren.invalid && pren.touched">Prénom invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>CIN</mat-label>
+        <input  [(ngModel)]="data.cin" name="cin" matInput placeholder="CIN"
+               #cin="ngModel" required minlength="8" maxlength="8"  pattern="[0-9]{8}">
+        <mat-hint *ngIf="!cin.valid && cin.touched">CIN invalide</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Date De Naissance</mat-label>
+        <input #Date="ngModel" matInput  [(ngModel)]="data.dateNais" name="date_naissance"  [matDatepicker]="picker"
+               placeholder="Date De Naissance"   required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint *ngIf="!Date.valid && Date.touched">Date de naissance nécessaire</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-select  [(ngModel)]="data.sexe" name="sexe" placeholder="Sexe"  required #sexe="ngModel">
+          <mat-option value="Homme">Homme</mat-option>
+          <mat-option value="Femme">Femme</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="!sexe.valid && sexe.touched">Sexe nécessaire</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Fonction</mat-label>
+        <input  [(ngModel)]="data.fonction" name="fonction" matInput placeholder="Fonction"
+               type="text" required minlength="2" pattern="[a-zA-Zéè ]+" #fnc="ngModel">
+        <mat-hint *ngIf="fnc.invalid && fnc.touched">Fonction invalide</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-select  [(ngModel)]="data.nature" name="nature" placeholder="Nature"   required #nat="ngModel">
+          <mat-option value="Particulier">Particulier</mat-option>
+          <mat-option value="Entreprise">Entreprise</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="nat.invalid && nat.touched">Nature nécessaire</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input  [(ngModel)]="data.email" name="mail" matInput placeholder="E-mail" type="email" required #email="ngModel">
+        <mat-hint *ngIf="email.invalid && email.touched">Email invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro du Téléphone</mat-label>
+        <input  [(ngModel)]="data.telephone" name="tel" matInput placeholder="Numéro du Téléphone"
+               required #tel="ngModel" pattern="[1-9][0-9]{7}">
+        <mat-hint *ngIf="!tel.valid && tel.touched">Téléphone invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Gouvernerat</mat-label>
+        <input [(ngModel)]="adresse.gouvernorat" name="gouvernerat" matInput placeholder="Gouvernerat"
+               required minlength="2" #gvr="ngModel" pattern="[a-zA-Zéè ]+">
+        <mat-hint *ngIf="gvr.invalid && gvr.touched">Gouvernorat invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input [(ngModel)]="adresse.ville" name="ville" matInput placeholder="Ville" type="text"
+               required minlength="2" #ville="ngModel" pattern="[a-zA-Zéè ]+">
+        <mat-hint *ngIf="ville.invalid && ville.touched">Ville invalide</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Code Postale</mat-label>
+        <input [(ngModel)]="adresse.codePostal" name="code_postale" matInput placeholder="Code Postale" required
+                pattern="[1-9][0-9]{3}" #cp="ngModel">
+        <mat-hint *ngIf="cp.invalid && cp.touched">Code postale invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Quartier</mat-label>
+        <input [(ngModel)]="adresse.quartier" name="quartier" matInput placeholder="Quartier" type="text" required
+               minlength="2" pattern="[a-zA-Zéè ]+" #qrt="ngModel">
+        <mat-hint *ngIf="qrt.invalid && qrt.touched">Quartier invalid</mat-hint>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <button mat-raised-button class="Btn-blue"  type="submit" [disabled]="!form.valid">Envoyer</button>
+
+</form>
+
+
+
+
+
+
+

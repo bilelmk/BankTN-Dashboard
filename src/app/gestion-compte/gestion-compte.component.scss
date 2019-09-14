@@ -1,0 +1,52 @@
+.nv-client{
+  font-weight: bold;
+  color: #0b3251;
+  font-size: 120%;
+}
+.nv-btn{
+  width: 100px;
+}
+
+.mat-button-toggle{
+  background-color :white;
+  color: #0b3251;
+  border: 2px solid rgba(11,50,81,0.4);
+
+}
+
+.mat-button-toggle-checked{
+  background-color: #0b3251;
+  color: white;
+}
+
+.Btn-blue{
+  background-color: #111f4d ;
+  color: #f2f4f7;
+  border:1px solid  #111f4d ;
+  border-radius: 1px;
+  height: 50%;
+
+  width: 10%;
+  padding-top: 5px;
+  margin-top: 13px;
+}
+
+.Btn-blue:hover{
+  background-color: #f2f4f7;
+  color: #111f4d ;
+}
+
+.Btn-details{
+  background-color: #111f4d ;
+  color: #f2f4f7;
+  border:1px solid  #111f4d ;
+  border-radius: 1px;
+  padding-top: 5px;
+  margin-top: 13px;
+  width: 100%;
+}
+
+.Btn-details:hover{
+  background-color: #f2f4f7;
+  color: #111f4d ;
+}

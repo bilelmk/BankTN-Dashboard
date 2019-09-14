@@ -1,0 +1,164 @@
+
+<div class="col-12 p-0 m-0 " >
+  <h3 class="model-titre">Modifier les données d'employé</h3>
+</div>
+<form (ngSubmit)="modifier()" #form="ngForm">
+  <div class="row mt-4" >
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input  [(ngModel)]="data.nom" name="nom" matInput placeholder="Nom" type="text" required minlength="2" >
+        <!--<mat-hint *ngIf="!Nom.valid && Nom.touched">nom lazem akther men 2</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input [(ngModel)]="data.prenom" name="prenom" matInput placeholder="Prénom" type="text" required minlength="2" >
+        <!--<mat-hint *ngIf="!Prenom.valid && Prenom.touched">hhhhhhh</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>CIN</mat-label>
+        <input [(ngModel)]="data.cin" name="cin" matInput placeholder="CIN"  required minlength="8" maxlength="8" type="number">
+        <!--<mat-hint *ngIf="!Cin.valid && Cin.touched"> bbbb</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Date De Naissance</mat-label>
+        <input  matInput [(ngModel)]="data.dateNais" name="date_naissance"  [matDatepicker]="picker" placeholder="Date De Naissance"  required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!--&lt;!&ndash;<mat-hint *ngIf="!Date.valid && Date.touched"> bbbb</mat-hint>&ndash;&gt;-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="data.sexe" name="sexe" placeholder="Sexe"  required>
+          <mat-option value="Homme">Homme</mat-option>
+          <mat-option value="Femme">Femme</mat-option>
+        </mat-select>
+        <!--<mat-hint align="end">Hint</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Fonction</mat-label>
+        <input [(ngModel)]="data.fonction" name="fonction" matInput placeholder="Fonction" type="text" required minlength="2">
+        <!--<mat-hint>Hint</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input [(ngModel)]="data.email" name="mail" matInput placeholder="E-mail"  email required >
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-5" >
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro du Téléphone</mat-label>
+        <input [(ngModel)]="data.telephone" name="tel" matInput placeholder="Numéro du Téléphone" required minlength="8" maxlength="8" type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Salaire</mat-label>
+        <input [(ngModel)]="data.salaire" name="salaire" matInput placeholder="Salaire" required type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Commission</mat-label>
+        <input [(ngModel)]="data.commission" name="commission" matInput placeholder="Commission" required type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Agence</mat-label>
+        <input [(ngModel)]="data.codeAgence" name="agence" matInput placeholder="Agence"  required minlength="2">
+        <!--<mat-hint>Hint</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Gouvernerat</mat-label>
+        <input [(ngModel)]="adresse.gouvernorat" name="gouvernerat" matInput placeholder="Gouvernerat" type="text" required minlength="2">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input [(ngModel)]="adresse.ville" name="ville" matInput placeholder="Ville" type="text"  required minlength="2">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Code Postale</mat-label>
+        <input [(ngModel)]="adresse.codePostal" name="code_postale" matInput placeholder="Code Postale"  required>
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Quartier</mat-label>
+        <input [(ngModel)]="adresse.quartier" name="quartier" matInput placeholder="Quartier" type="text" required>
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <button mat-raised-button class="Btn-blue" type="submit" [disabled]="!form.valid" >Envoyer</button>
+
+
+
+</form>
+
+
+
+
+
+
+

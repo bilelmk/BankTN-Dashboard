@@ -1,0 +1,464 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" >
+        <div class="card">
+
+          <div class="card-header card-header-primary">
+            <h4 class="card-title ">Opérations</h4>
+            <br>
+          </div>
+          <div class="card-body">
+
+            <div class="row mt-5" >
+              <label class="nv-client ml-5 mr-3 mt-2">Choisir le type d'opération</label>
+              <mat-button-toggle-group >
+                <mat-button-toggle class="nv-btn" (click)="debiter()" >
+                  Débiter
+                </mat-button-toggle>
+                <mat-button-toggle class="nv-btn" (click)="crediter()">
+                  Créditer
+                </mat-button-toggle>
+                <mat-button-toggle class="nv-btn" (click)="virement()">
+                  Virement
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div *ngIf="Virement" class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Virement</h4>
+              </div>
+
+              <div class="card-body row mt-4 mb-3"  >
+                <div class="form-group col-md-10" >
+                  <mat-form-field appearance="outline">
+                    <mat-label>Numéro Du Compte</mat-label>
+                    <input [(ngModel)]="Compte1ID" name="id" matInput placeholder="id" required pattern="[0-9]{13}" #idcmpt1="ngModel">
+                    <mat-hint *ngIf="idcmpt1.invalid && idcmpt1.touched">Numéro de compte invalid</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-2" >
+
+
+
+                  <div class="col-10">
+                    <a [disabled]="idcmpt1.invalid" style="width: 100% ; text-align: center" mat-raised-button class="Btn-blue" (click)="VerifierCompte1()">
+                      Vérifier
+                    </a>
+                  </div>
+
+                  <div *ngIf="Client1 != null" class="col-10">
+                    <button mat-raised-button class="Btn-details" type="button" (click)="openDetailsDialog(Client1)">
+                      <i class="material-icons icon-blue" >
+                        subject
+                      </i>
+                      Détails
+                    </button>
+                  </div>
+                  <!--<div *ngIf="Client1Comptes" class="col-md-10">-->
+                    <!--<button mat-raised-button class="Btn-details" type="button" data-toggle="collapse" data-target="#ClientV1" aria-expanded="false" aria-controls="collapseExample">-->
+                      <!--<i class="material-icons icon-blue" >-->
+                        <!--subject-->
+                      <!--</i>-->
+                      <!--Détails-->
+                    <!--</button>-->
+                  <!--</div>-->
+                </div>
+
+                <!--<div class="collapse" id="ClientV1">-->
+                  <!--<div class="card card-body">-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+              </div>
+
+              <div class="card-body row" style="margin-top: -50px">
+                <div class="form-group col-md-10" >
+                  <mat-form-field appearance="outline">
+                    <mat-label>Numéro Du Compte Bénéficiare </mat-label>
+                    <input [(ngModel)]="Compte2ID" name="id" matInput placeholder="id" required pattern="[0-9]{13}" #idcmpt2="ngModel">
+                    <mat-hint *ngIf="idcmpt2.invalid && idcmpt2.touched">Numéro de compte invalid</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-2" >
+                  <div class="col-md-10">
+                    <a  [disabled]="idcmpt2.invalid" style="width: 100% ; text-align: center" mat-raised-button class="Btn-blue" (click)="VerifierCompte2()" >
+                      Vérifier
+                    </a>
+                  </div>
+                  <div *ngIf="Client2 != null" class="col-10">
+                    <button mat-raised-button class="Btn-details" type="button" (click)="openDetailsDialog(Client2)">
+                      <i class="material-icons icon-blue" >
+                        subject
+                      </i>
+                      Détails
+                    </button>
+                  </div>
+                  <!--<div class="col-md-10">-->
+                    <!--<button mat-raised-button class="Btn-details" type="button" data-toggle="collapse" data-target="#ClientV2" aria-expanded="false" aria-controls="collapseExample">-->
+                      <!--<i class="material-icons icon-blue" >-->
+                        <!--subject-->
+                      <!--</i>-->
+                      <!--Détails-->
+                    <!--</button>-->
+                  <!--</div>-->
+                </div>
+
+                <!--<div class="collapse" id="ClientV2">-->
+                  <!--<div class="card card-body">-->
+                  <!--</div>-->
+                <!--</div>-->
+
+              <!--</div>-->
+            </div>
+
+
+
+
+
+
+
+              <div class="card-body row" *ngIf="Compte1 && Compte2" >
+                <form style="padding-right: 0px ; padding-left: 0px ; margin-top: -30px "
+                      class="row col-md-12" (ngSubmit)="operationVirer(form,Compte1.numCompte , Compte2.numCompte)" #form="ngForm">
+                  <!--<p>Type Compte : Epargne </p>-->
+                  <div class="form-group col-md-10" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Montant</mat-label>
+                      <input  ngModel name="montant" required matInput placeholder="montant" #montv="ngModel"
+                              pattern="[1-9][0-9]*(\.[0-9]{1,3})?">
+                      <mat-hint  *ngIf="montv.invalid && montv.touched">Montant invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2" >
+                    <div class="col-md-10">
+                      <button style="width: 100%" mat-raised-button class="Btn-blue" type="submit" [disabled]="montv.invalid">Virer</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+
+
+
+            <div *ngIf="Debiter" class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Débiter</h4>
+              </div>
+
+              <div class="card-body row mt-4 "  >
+                <div class="form-group col-md-10" >
+                  <mat-form-field appearance="outline">
+                    <mat-label>Numéro Du Compte</mat-label>
+                    <input  [(ngModel)]="Compte1ID" name="id" matInput placeholder="id" required pattern="[0-9]{13}" #idcmptdeb="ngModel">
+                    <mat-hint  *ngIf="idcmptdeb.invalid && idcmptdeb.touched">Numéro de compte invalid</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-2" >
+                  <div class="col-md-10">
+                    <a [disabled]="idcmptdeb.invalid" style="width: 100%" mat-raised-button class="Btn-blue" (click)="VerifierCompte1()" >
+                      Vérifier
+                    </a>
+                  </div>
+                  <div *ngIf="Client1 != null" class="col-10">
+                    <button mat-raised-button class="Btn-details" type="button" (click)="openDetailsDialog(Client1)">
+                      <i class="material-icons icon-blue" >
+                        subject
+                      </i>
+                      Détails
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body row" *ngIf="Compte1">
+                  <form style="padding-right: 0px ; padding-left: 0px ; margin-top: -30px "
+                        class="row col-md-12" (ngSubmit)="operationDebiter(form,Compte1.numCompte)" #form="ngForm">
+                    <!--<p>Type Compte : Epargne </p>-->
+                    <div  class="form-group col-md-10" >
+                      <mat-form-field style="width: 100%" appearance="outline">
+                      <mat-label>Montant</mat-label>
+                      <input  ngModel name="montant" matInput placeholder="montant" required #montdeb="ngModel"
+                              pattern="[1-9][0-9]*(\.[0-9]{1,3})?">
+                        <mat-hint  *ngIf="montdeb.invalid && montdeb.touched">Montant invalid</mat-hint>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-2" >
+                      <div class="col-md-10">
+                        <button style="width: 100%" mat-raised-button class="Btn-blue" type="submit" >Debiter</button>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div *ngIf="Crediter" class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Créditer</h4>
+              </div>
+
+              <div class="card-body row mt-4 "  >
+                <div class="form-group col-md-10" >
+                  <mat-form-field appearance="outline">
+                    <mat-label>Numéro Du Compte </mat-label>
+                    <input  [(ngModel)]="Compte1ID" name="id" matInput placeholder="id" required pattern="[0-9]{13}" #idcmptcred="ngModel">
+                    <mat-hint  *ngIf="idcmptcred.invalid && idcmptcred.touched">Numéro de compte invalid</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-2" >
+                  <div class="col-md-10">
+                    <a [disabled]="idcmptcred.invalid" style="width: 100%" mat-raised-button class="Btn-blue" (click)="VerifierCompte1()" >
+                      Vérifier
+                    </a>
+                  </div>
+                  <div *ngIf="Client1 != null" class="col-10">
+                    <button mat-raised-button class="Btn-details" type="button" (click)="openDetailsDialog(Client1)">
+                      <i class="material-icons icon-blue" >
+                        subject
+                      </i>
+                      Détails
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body row" *ngIf="Compte1">
+                <form style="padding-right: 0px ; padding-left: 0px ; margin-top: -30px "
+                      class="row col-md-12" (ngSubmit)="operationCrediter(form,Compte1.numCompte)" #form="ngForm">
+                  <!--<p>Type Compte : Epargne </p>-->
+                  <div class="form-group col-md-10" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Montant</mat-label>
+                      <input  ngModel name="montant" matInput placeholder="montant" required #montcred="ngModel"
+                              pattern="[1-9][0-9]*(\.[0-9]{1,3})?">
+                      <mat-hint  *ngIf="montcred.invalid && montcred.touched">Montant invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2" >
+                    <div class="col-md-10">
+                      <button style="width: 100%" mat-raised-button class="Btn-blue" type="submit" >Créditer</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+
+
+            <div  class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Historique Des Opérations</h4>
+              </div>
+
+              <form (ngSubmit)="getHistorique(form)" #form="ngForm">
+                <div class="card-body row mt-4 "  >
+                  <div class="form-group col-md-10" >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Numéro Du Compte</mat-label>
+                      <input  ngModel name="id" matInput placeholder="id" required pattern="[0-9]{13}" #idcmpthis="ngModel">
+                      <mat-hint  *ngIf="idcmpthis.invalid && idcmpthis.touched">Numéro de compte invalid</mat-hint>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-md-2" >
+                    <div class="col-md-10">
+                      <button [disabled]="idcmpthis.invalid" type="submit" style="width: 100%" mat-raised-button class="Btn-blue"  >
+                        Valider
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div *ngIf="Historique">
+                <div class="table-responsive">
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-hover table">
+
+                    <!-- Position Column -->
+
+                    <ng-container matColumnDef="id">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Numéro Transaction </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{element.codeTransactionVirement ?  element.codeTransactionVirement : element.codeTransactionStandard}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="type">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Type </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{ element.type ?  element.type : "Virement"}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="compte">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Compte  </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{ element.numCompte ?  element.numCompte : element.numCompteTrans}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rec">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Compte Bénéficiare </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{ element.numCompteRec ? element.numCompteRec: "-" }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Date </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{element.date  | date:'short' }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="montant">
+                      <th class="text-center title" mat-header-cell *matHeaderCellDef> Montant </th>
+                      <td class="text-center" mat-cell *matCellDef="let element"> {{element.montant}} TND </td>
+                    </ng-container>
+
+                    <tr style="background-color:#f2f4f7 ;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                </div>
+
+                <!--<div *ngFor="let op of Historique">-->
+                  <!--<div *ngIf="op.codeTransactionVirement">-->
+                    <!--<p>Virement</p>-->
+                    <!--<p>{{op.date}}</p>-->
+                  <!--</div>-->
+                  <!--<div *ngIf="op.codeTransactionStandard">-->
+                    <!--<p>{{op.type}}</p>-->
+                    <!--<p>{{op.date}}</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div *ngIf="Debiter" class="card pr-4 pl-4 mt-5" style="padding-bottom: 35px ;margin-bottom: 80px">-->
+  <!--<div class="card-header card-header-primary">-->
+    <!--<h4 class="card-title">Débiter</h4>-->
+  <!--</div>-->
+
+  <!--<div class="card-body row mt-4 "  >-->
+    <!--<div class="form-group col-md-10" >-->
+      <!--<mat-form-field appearance="outline">-->
+        <!--<mat-label>Identifiant de Client </mat-label>-->
+        <!--<input  [(ngModel)]="Client1ID" name="id" matInput placeholder="id">-->
+        <!--<mat-hint></mat-hint>-->
+      <!--</mat-form-field>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-2" >-->
+      <!--<div class="col-md-10">-->
+        <!--<a  style="width: 100%" mat-raised-button class="Btn-blue" (click)="VerifierDebiterClient()" >-->
+          <!--Vérifier-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div *ngIf="Client1Comptes" class="col-md-10">-->
+        <!--<button mat-raised-button class="Btn-details" type="button" data-toggle="collapse" data-target="#ClientD" aria-expanded="false" aria-controls="collapseExample">-->
+          <!--<i class="material-icons icon-blue" >-->
+            <!--subject-->
+          <!--</i>-->
+          <!--Détails-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div *ngIf="Client1Comptes" class="collapse" id="ClientD">-->
+      <!--<div class="card card-body">-->
+        <!--<p>{{Client1.nom}}</p>-->
+        <!--<p>{{Client1.numClient}}</p>-->
+        <!--<div *ngFor="let compte of Client1Comptes">-->
+          <!--<div *ngIf="compte.numTypeCompte===0">-->
+
+            <!--<form (ngSubmit)="operationDebiter(form,compte.numCompte)" #form="ngForm">-->
+              <!--<p>Type Compte : Epargne </p>-->
+              <!--<div class="form-group col-md-10" >-->
+                <!--<mat-form-field appearance="outline">-->
+                  <!--<mat-label>Montant</mat-label>-->
+                  <!--<input  ngModel name="montant" matInput placeholder="montant" type="number">-->
+                  <!--<mat-hint></mat-hint>-->
+                <!--</mat-form-field>-->
+                <!--<button type="submit" >Debiter</button>-->
+              <!--</div>-->
+            <!--</form>-->
+
+          <!--</div>-->
+
+          <!--<div *ngIf="compte.numTypeCompte===1">-->
+            <!--<form (ngSubmit)="operationDebiter(form,compte.numCompte)" #form="ngForm">-->
+              <!--<p>Type Compte : Courant </p>-->
+              <!--<div class="form-group col-md-10" >-->
+                <!--<mat-form-field appearance="outline">-->
+                  <!--<mat-label>Montant</mat-label>-->
+                  <!--<input  ngModel name="montant" matInput placeholder="montant" type="number">-->
+                  <!--<mat-hint></mat-hint>-->
+                <!--</mat-form-field>-->
+                <!--<button type="submit" >Debiter</button>-->
+              <!--</div>-->
+            <!--</form>-->
+          <!--</div>-->
+
+        <!--</div>-->
+
+
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+<!--</div>-->

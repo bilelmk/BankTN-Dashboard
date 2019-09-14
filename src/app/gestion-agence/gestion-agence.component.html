@@ -1,0 +1,67 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" >
+        <div class="card">
+
+          <div class="card-header card-header-primary row">
+            <h4 class="card-title">Gestion Des Agences</h4>
+            <button (click)="openAddDialog()" matTooltip="Ajouter Une Agence" [matTooltipPosition]="'above'" class="ml-auto mr-2" mat-mini-fab color="primary" >
+              <i class="material-icons icon-white" style="font-size: 40px ; margin-top: -8px" >
+                add_circle
+              </i>
+            </button>
+            <br>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+
+                <thead class="text-light" style="background-color:#f2f4f7 ;" >
+                <th style="color: #020205">Nom</th>
+                <th style="color: #020205">Adresse</th>
+                <th style="color: #020205">Nom Chef</th>
+                <th style="color: #020205" class="text-center">Actions</th>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let agence of AGENCES">
+                  <td>{{agence.nom}}</td>
+                  <td>{{agence.adresse}}</td>
+                  <td>{{agence.numChef}}</td>
+                  <td class="td-actions text-center">
+                    <button mat-raised-button
+                            type="button"
+                            matTooltip="Modifier"
+                            [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn btn-just-icon"
+                            (click)="openPatchDialog()"                    >
+                      <i class="material-icons icon-blue">
+                        edit
+                      </i>
+                    </button>
+                    <button mat-raised-button
+                            type="button"
+                            matTooltip="Supprimer"
+                            [matTooltipPosition]="'above'"
+                            class="btn btn-danger btn-link btn-sm btn-just-icon "
+                            (click)="openDeleteDialog()">
+                      <i class="material-icons ">
+                        close
+                      </i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

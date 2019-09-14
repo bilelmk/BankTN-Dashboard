@@ -1,0 +1,178 @@
+
+<div class="col-12 p-0 m-0 " >
+  <h3 class="model-titre">Ajouter Un Employé</h3>
+</div>
+<form (ngSubmit)="ajouter(form)" #form="ngForm">
+  <div class="row mt-4" >
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input  ngModel name="nom" matInput placeholder="Nom" type="text" required minlength="2" >
+        <!--<mat-hint *ngIf="!Nom.valid && Nom.touched">nom lazem akther men 2</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input ngModel name="prenom" matInput placeholder="Prénom" type="text" required minlength="2" >
+        <!--<mat-hint *ngIf="!Prenom.valid && Prenom.touched">hhhhhhh</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>CIN</mat-label>
+        <input ngModel name="cin" matInput placeholder="CIN"  required minlength="8" maxlength="8" type="number">
+        <!--<mat-hint *ngIf="!Cin.valid && Cin.touched"> bbbb</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Date De Naissance</mat-label>
+        <input  matInput ngModel name="date_naissance"  [matDatepicker]="picker" placeholder="Date De Naissance"  required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!--&lt;!&ndash;<mat-hint *ngIf="!Date.valid && Date.touched"> bbbb</mat-hint>&ndash;&gt;-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-select ngModel name="sexe" placeholder="Sexe"  required>
+          <mat-option value="Homme">Homme</mat-option>
+          <mat-option value="Femme">Femme</mat-option>
+        </mat-select>
+        <!--<mat-hint align="end">Hint</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Fonction</mat-label>
+
+        <mat-select ngModel name="fonction" matInput placeholder="Fonction" type="text" required >
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="Conseiller">Conseiller</mat-option>
+        </mat-select>
+
+        <!--<mat-hint>Hint</mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input ngModel name="mail" matInput placeholder="E-mail"  email required >
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro du Téléphone</mat-label>
+        <input ngModel name="tel" matInput placeholder="Numéro du Téléphone" required minlength="8" maxlength="8" type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Salaire</mat-label>
+        <input ngModel name="salaire" matInput placeholder="Salaire" required type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Commission</mat-label>
+        <input ngModel name="commission" matInput placeholder="Commission" required type="number">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+
+      <mat-form-field appearance="outline">
+        <mat-label>Agence</mat-label>
+
+        <mat-select ngModel name="agence" placeholder="Agence"  required>
+          <div *ngFor="let agence of AGENCES" >
+            <mat-option value="{{agence.codeAgence}}">{{agence.nom}}</mat-option>
+          </div>
+        </mat-select>
+        <!--<mat-hint align="end">Hint</mat-hint>-->
+      </mat-form-field>
+
+
+
+    </div>
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+        <mat-label>Gouvernerat</mat-label>
+        <input ngModel name="gouvernerat" matInput placeholder="Gouvernerat" type="text" required minlength="2">
+        <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+      <mat-label>Ville</mat-label>
+      <input ngModel name="ville" matInput placeholder="Ville" type="text"  required minlength="2">
+      <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+      <mat-label>Code Postale</mat-label>
+      <input ngModel name="code_postale" matInput placeholder="Code Postale" required >
+      <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group col-md-6" >
+      <mat-form-field appearance="outline">
+      <mat-label>Quartier</mat-label>
+      <input ngModel name="quartier" matInput placeholder="Quartier" type="text" required >
+      <!--<mat-hint></mat-hint>-->
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <button mat-raised-button class="Btn-blue" type="submit" [disabled]="!form.valid" >Envoyer</button>
+
+
+
+</form>
+
+
+
+
+
+
+
